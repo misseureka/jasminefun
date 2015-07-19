@@ -1,0 +1,9 @@
+(function () {
+  'use strict';
+
+  describe('Simple functions must return expected results', function () {
+      it('isArray should return true for array', function () {
+        expect(isArray([1,2,3,4,5])).toBe(true);
+      });
+  });
+})();
