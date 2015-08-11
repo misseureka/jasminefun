@@ -116,7 +116,7 @@ var rtgEventHandler = function() {
     }    
 }
 
-(function () {    
-    var app = new rtgEventHandler();
-    app.init();
-})();
+//(function () {    
+//    var app = new rtgEventHandler();
+//    app.init();
+//})();
