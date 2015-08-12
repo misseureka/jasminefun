@@ -113,6 +113,21 @@
     });
   });
 
-  
+  describe('Function changed global variable 2', function(){
+    beforeAll(function() {
+      this.app = new rtgEventHandler();
+      this.parameters = [];
+    });
+    
+    it('addEventValue should add new event to variable parameters for "event, cart"', function () {
+      this.app.addEventValue('event', 'cart', this.parameters);
+      expect(this.parameters).toEqual(['event=cart']);
+    });
+
+    it('addEventValue should add new event to variable parameters for "products, [{sku:1, qty:1}, {sku:2, qty:2}]"', function () {
+      this.app.addEventValue('products', [{sku:1, qty:1}, {sku:2, qty:2}], this.parameters);
+      expect(this.parameters).toEqual(['event=cart', 'products__sku=1', 'products__qty=1', 'products__sku=2', 'products__qty=2']);
+    });
+  });
 
 })();
