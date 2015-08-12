@@ -53,10 +53,10 @@ var rtgEventHandler = function() {
         }
     }
 
-    this.addEventValue = function( name, stringOrArray, parameters ) {
-      if ( this.isArray( stringOrArray ) ) {
-        for ( var i = 0, len = stringOrArray.length; i < len; i++ ) {
-          var item = stringOrArray[i];
+    this.addEventValue = function( name, value, parameters ) {
+      if ( this.isArray( value ) ) {
+        for ( var i = 0, len = value.length; i < len; i++ ) {
+          var item = value[i];
           for ( var attr in item ) {
             if ( item.hasOwnProperty( attr ) ) {
               this.appendParam( name + '__' + attr, item[attr], parameters );
@@ -64,7 +64,7 @@ var rtgEventHandler = function() {
           }
         }
       } else {
-        this.appendParam( name, stringOrArray, parameters );
+        this.appendParam( name, value, parameters );
       }
     }
 

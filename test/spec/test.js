@@ -7,27 +7,27 @@
     });
     
     it('isArray should return true for array', function () {
-      expect(this.app.isArray([1,2,3,4,5])).toBe(true);
+      expect(this.app.isArray([1,2,3,4,5])).toBeTruthy();
     });
 
     it('isArray should return false for string', function () {
-      expect(this.app.isArray('I am not an array')).toBe(false);
+      expect(this.app.isArray('I am not an array')).toBeFalsy();
     });
 
     it('isArray should return false for undefined', function () {
-      expect(this.app.isArray(undefined)).toBe(false);
+      expect(this.app.isArray(undefined)).toBeFalsy();
     } );
 
     it( 'isTechnicalKey should return true for "__referrer"', function () {
-      expect( this.app.isTechnicalKey( '__referrer' ) ).toBe( true );
+      expect( this.app.isTechnicalKey( '__referrer' ) ).toBeTruthy();
     } );
 
     it( 'isTechnicalKey should return false for "event"', function () {
-      expect( this.app.isTechnicalKey( 'event' ) ).toBe( false );
+      expect( this.app.isTechnicalKey( 'event' ) ).toBeFalsy();
     } );
 
     it( 'isTechnicalKey should return false for undefined', function () {
-      expect( this.app.isTechnicalKey( undefined ) ).toBe( false );
+      expect( this.app.isTechnicalKey( undefined ) ).toBeFalsy();
     } );
   } );
 
@@ -91,5 +91,28 @@
     } );   
   } );
 
+  describe('Function changed global variable', function(){
+    beforeAll(function() {
+      this.app = new rtgEventHandler();
+      this.parameters = [];
+    });
+    
+    it('appendParam should add new value to variable parameters for "event, addToSegment"', function () {
+      this.app.appendParam('event', 'addToSegment', this.parameters);
+      expect(this.parameters).toEqual(['event=addToSegment']);
+    });
+
+    it('appendParam should add new value to variable parameters for "name, unittest"', function () {
+      this.app.appendParam('name', 'unittest', this.parameters);
+      expect(this.parameters).toEqual(['event=addToSegment', 'name=unittest']);
+    });
+
+    it('appendParam should not add new value to variable parameters for "sku, undefined"', function () {
+      this.app.appendParam('sku', undefined, this.parameters);
+      expect(this.parameters).toEqual(['event=addToSegment', 'name=unittest']);
+    });
+  });
+
+  
 
 })();
