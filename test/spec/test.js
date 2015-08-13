@@ -128,6 +128,23 @@
       this.app.addEventValue('products', [{sku:1, qty:1}, {sku:2, qty:2}], this.parameters);
       expect(this.parameters).toEqual(['event=cart', 'products__sku=1', 'products__qty=1', 'products__sku=2', 'products__qty=2']);
     });
-  });
+  } );
 
+  //describe( 'Function append image to body', function () {
+  //  beforeEach( function () {
+  //    this.app = new rtgEventHandler();
+  //  } );
+
+  //  it( 'sendRequest should append image with src link based on parameters', function () {
+  //    this.app.sendRequest( ['event=cart', 'products__sku=1', 'products__qty=1', '__location=site', '__title=unitTest'] );
+  //    var im = document.getElementsByTagName( 'img' )[0];
+  //    expect( im.getAttribute( 'src' ) ).toMatch(  /:\/\/tag.rutarget.ru\/tag\?event=cart&products__sku=1&products__qty=1&__location=site&__title=unitTest$/ );
+  //  } );
+
+  //  it( 'sendRequest should append image with src link based on parameters', function () {
+  //    this.app.sendRequest( []);
+  //    var im = document.getElementsByTagName( 'img' )[0];
+  //    expect( im.getAttribute( 'src' ) ).toMatch( /:\/\/tag.rutarget.ru\/tag\?$/ );
+  //  } );
+  //} );
 })();
