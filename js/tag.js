@@ -1,4 +1,4 @@
-/*"use strict";
+﻿/*"use strict";
 
 */
 var rtgEventHandler = function() {
@@ -10,6 +10,7 @@ var rtgEventHandler = function() {
       KEY_KEYWORDS = '__keywords',
       KEY_VISITOR_TZ = '_usertz';
     
+  //Функция, которую можно не тестировать
     this.init = function() {
         var dataContainer = window[DATA_CONTAINER_PROP];
         if (this.isArray(dataContainer)) {
@@ -27,14 +28,17 @@ var rtgEventHandler = function() {
         window[DATA_CONTAINER_PROP] = dataContainer;
     }
 
+    //простая функция - возвращает true/false
     this.isArray = function(arr) {
         return !!arr && '[object Array]' === Object.prototype.toString.call(arr);
     }
 
+    //простая функция - возвращает true/false
     this.isTechnicalKey = function( key ) {
       return KEY_LOCATION === key || KEY_REFERRER === key || KEY_TITLE === key || KEY_KEYWORDS === key || KEY_VISITOR_TZ === key;
     }
 
+    //создаем тег meta и прикрпеляем к body -> тестируем
     this.keywords = function() {
       var metaElement = document.getElementsByTagName( 'meta' ),
               result = [];
@@ -47,12 +51,14 @@ var rtgEventHandler = function() {
       return result.join( ',' );
     }
 
+    //объявляем глобальную переменную parameters(result) -> после вызова функции проверяем ее значение
     this.appendParam = function(name, value, result) {
         if (typeof value !== 'undefined') {
             result.push(name + '=' + encodeURIComponent(value));
         }
     }
 
+    //объявляем глобальную переменную parameters(result), передаем value массив/не массив  -> после вызова функции проверяем значение parameters(result)
     this.addEventValue = function( name, value, parameters ) {
       if ( this.isArray( value ) ) {
         for ( var i = 0, len = value.length; i < len; i++ ) {
@@ -68,6 +74,9 @@ var rtgEventHandler = function() {
       }
     }
 
+    //Видимо, нужно как-то модифицировать, чтобы тоже не пришлось тестировать.
+    //function doRequest = createRequest + sendRequest
+    //Возможно выделить отдельно добавление служебных параметров, чтобы тоже потестировать или не имеет смысла?
     this.createRequest = function( dataContainer ) {
       main_loop: for ( var i = 0, len = dataContainer.length; i < len; i++ ) {
         var parameters = [];
@@ -100,6 +109,7 @@ var rtgEventHandler = function() {
       dataContainer.length = 0;
     }
 
+    //после вызова берем первую картинку в body и проверяем ее ссылку
     this.sendRequest = function(parameters) {
         if (document.body) {
             var img = document.createElement('img');
